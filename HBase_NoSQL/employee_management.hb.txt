@@ -1,0 +1,45 @@
+# 1) create a single “company” table with three column‐families:
+create 'company', 'meta', 'info', 'rel'
+
+# 2) insert one department D1
+put 'company', 'D1', 'meta:type',           'department'
+put 'company', 'D1', 'info:name',           'Sales'
+put 'company', 'D1', 'info:budget',         '500000'
+
+# 3) insert three employees: E1 (manager), E2, E3
+#   – E1 is manager of E2 & E3
+put 'company', 'E1', 'meta:type',           'employee'
+put 'company', 'E1', 'info:first-name',     'Alice'
+put 'company', 'E1', 'info:last-name',      'Smith'
+put 'company', 'E1', 'info:salary',         '80000'
+put 'company', 'E1', 'rel:works-at',        'D1'
+put 'company', 'E1', 'rel:manages',         'E2,E3'
+
+put 'company', 'E2', 'meta:type',           'employee'
+put 'company', 'E2', 'info:first-name',     'Bob'
+put 'company', 'E2', 'info:last-name',      'Jones'
+put 'company', 'E2', 'info:salary',         '60000'
+put 'company', 'E2', 'rel:works-at',        'D1'
+put 'company', 'E2', 'rel:managed-by',      'E1'
+
+put 'company', 'E3', 'meta:type',           'employee'
+put 'company', 'E3', 'info:first-name',     'Charlie'
+put 'company', 'E3', 'info:last-name',      'Brown'
+put 'company', 'E3', 'info:salary',         '55000'
+put 'company', 'E3', 'rel:works-at',        'D1'
+put 'company', 'E3', 'rel:managed-by',      'E1'
+
+# 4) insert two projects: P1, P2
+#   – E2 works on P1; E3 works on P1 & P2
+put 'company', 'P1', 'meta:type',           'project'
+put 'company', 'P1', 'info:title',          'Project Alpha'
+put 'company', 'P1', 'info:budget',         '100000'
+put 'company', 'P1', 'rel:members',         'E2,E3'
+
+put 'company', 'P2', 'meta:type',           'project'
+put 'company', 'P2', 'info:title',          'Project Beta'
+put 'company', 'P2', 'info:budget',         '150000'
+put 'company', 'P2', 'rel:members',         'E3'
+
+# 5) verify by scanning
+scan 'company'
