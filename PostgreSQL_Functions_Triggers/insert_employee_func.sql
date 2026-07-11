@@ -1,14 +1,3 @@
-\set ECHO all
-/* ====================================================== * 
- * Assignment 2                                  *
- * Student number: 8334572                               *
- * Name: Gurkeeratjit Singh Togar                                    *
- * ====================================================== */
---
--- Task 1
---
-\set ECHO none
-
 CREATE OR REPLACE FUNCTION insert_employee(
     emp_enum NUMERIC(12,0),
     emp_name TEXT,
@@ -37,5 +26,3 @@ BEGIN
     END IF;
 END;
 $$ LANGUAGE plpgsql;
-
-
