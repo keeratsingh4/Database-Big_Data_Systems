@@ -1,14 +1,3 @@
-\set ECHO all
-/* ====================================================== * 
- * Assignment 2                                  *
- * Student number: 8334572                               *
- * Name: Gurkeeratjit Singh Togar                                    *
- * ====================================================== */
---
--- Task 3
---
-\set ECHO none
-
 CREATE OR REPLACE FUNCTION LONGTRIP(DLNUM numeric)
 RETURNS integer AS $$
 DECLARE
